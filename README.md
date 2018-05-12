@@ -76,8 +76,8 @@
 * Ada Boost (```AdaBoostClassifier```) : ```n_estimators```, ```algorithm```, ```learning_rate```
 
 ##4. 验证（Validatiion）
-验证（Validation）是检验算法效果，防止过拟合的过程。 过拟合（Overfitting）指的是算法在训练集上表现良好，但在测试集(或者没有见过的）数据集上表现很糟糕。因此，将数据及分割成测试集和训练集以便在不同的数据集上测试和训练非常重要。
-在Scikit-Learn中，我门可以使用```StratifiedShuffleSplit```来产生训练集和测试集。该算法会将数据集分割成K份不同的子集（folds）。在本次测试中，我将它们分割成了**100 份**。
+验证（Validation）是检验算法效果，防止过拟合的过程。 过拟合（Overfitting）指的是算法在训练集上表现良好，但在测试集(或者没有见过的）数据集上表现很糟糕。具体的，验证可以用在决策树的剪枝。因此，将数据及分割成测试集和训练集以便在不同的数据集上测试和训练非常重要。
+在Scikit-Learn中，我门可以使用```StratifiedShuffleSplit```来产生训练集和测试集。该算法会将数据集有放回的重复抽样获得K份不同的子集（folds）。在本次测试中，我将它们分割成了**100 folds**，意思是按照测试集和训练集三七分的规则，随机分配100次原始数据。这样，我们就能避免偶然的一次训练带来的意外误差。
 
 
 
@@ -163,7 +163,7 @@ number_of_best_features = 10
 
 ##6. 评估指标（Evaluation Metrics）
 
-我使用了 **Precision**， **Recall** 和 **F1-score**来判断算法的好坏。这些指标反映了预测值和实际值之间的差异，具体的意义如下。
+我使用了 **Precision**， **Recall** 和 **F1-score**来判断算法的好坏。原始数据中，非POI的数量要远远大于POI的数量，因此Accuracy指标值结果会比较高，但并不额外反映多少信息，而且信息会被混合在一起（一个10%为Positive的数据集，我全部猜Negative也会有90%的精确度）。这些指标反映了预测值和实际值之间的差异，具体的意义如下。
 
 * True Positive (TP) :  该项实际是Positive，并被成功预测为Positive。
 * True Negative (TN) :  该项实际是negative，并被成功预测为negative。
