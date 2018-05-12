@@ -163,7 +163,9 @@ number_of_best_features = 10
 
 ##6. 评估指标（Evaluation Metrics）
 
-我使用了 **Precision**， **Recall** 和 **F1-score**来判断算法的好坏。原始数据中，非POI的数量要远远大于POI的数量，因此Accuracy指标值结果会比较高，但并不额外反映多少信息，而且信息会被混合在一起（一个10%为Positive的数据集，我全部猜Negative也会有90%的精确度）。这些指标反映了预测值和实际值之间的差异，具体的意义如下。
+我使用了 **Precision**， **Recall** 和 **F1-score**来判断算法的好坏。我们舍弃了 **Accuracy** 指标，因为在原始数据中，非POI的数量要远远大于POI的数量， **Accuracy** 指标值结果会比较高，但并不额外反映多少信息，而且信息会被混合在一起（一个10%为Positive的数据集，我全部猜Negative也会有90%的精确度）。
+
+以上这些指标反映了预测值和实际值之间的差异，具体的意义如下。
 
 * True Positive (TP) :  该项实际是Positive，并被成功预测为Positive。
 * True Negative (TN) :  该项实际是negative，并被成功预测为negative。
